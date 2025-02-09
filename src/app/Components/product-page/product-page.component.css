@@ -1,0 +1,42 @@
+.img-thumbnail{
+    padding: 0px;
+    border-radius: 10px;
+    max-width: 70%;
+    cursor: pointer;
+}
+
+.selected_image {
+    border: 1.5px solid #ababab;
+}
+
+.displayed_image {
+    max-width: 100%;
+    border: 2px solid #f2f2f2;
+    border-radius: 10px;
+    /* box-shadow: 1px 0px #ececec; */
+}
+
+
+
+/*accord*/
+.accordion-button:after {
+    order: -1; 
+    margin-left: 0px; 
+    margin-right:0.8em; 
+}
+.accordion-button {
+    background-color: rgb(255, 255, 255) !important;
+    /* padding-bottom: 0px;
+    padding-top: 6px; */
+    font-weight: 400;
+    font-size: 13px;
+}
+
+
+.accordion{
+    font-size: 14px;
+}
+
+.accordion{
+    border: 1px solid #dadada
+}

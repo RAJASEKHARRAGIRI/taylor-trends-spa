@@ -1,0 +1,141 @@
+<div class="container">
+    <div class="row my-2">
+        <div class="col-12">
+            <div class="row justify-content-between">
+                <div class="col-4">
+                    <span style="font-size: 20px; font-weight: 500;">Manage Addresses</span>
+                </div>
+                <div class="col-4">
+                    <button type="button" #addAdressModalButton id="addbutton" name="addNew" class="btn btn-primary btn-sm float-end" (click)="openAddModal()" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        Add a new address
+                    </button>
+                </div>
+              </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<form [formGroup]="addressForm" novalidate>
+    <div class="modal fade " id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+
+        <div class=" modal-lg modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h6 class="modal-title" id="staticBackdropLabel">Add Address</h6>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row g-3 mt-0">
+
+                            <div class="col-md-6 mt-2">
+                                <label for="fullName" class="form-label mb-1">Full Name <span class="requiredStar">*</span></label>
+                                <input type="text" formControlName="fullName" class="form-control" id="fullName" required>
+                                @if (addressForm.get('fullName')?.touched && addressForm.get('fullName')?.hasError('required'))
+                                {
+                                    <div class="invalid-errors">
+                                       Full Name is required
+                                    </div>
+                                }
+                            </div>
+                            <div class="col-md-6  mt-2">
+                                <label for="phoneNumber" class="form-label mb-1">Phone Number <span class="requiredStar">*</span></label>
+                                <input type="text" formControlName="phoneNumber" class="form-control" id="phoneNumber" placeholder="Ex: 8121211222">
+                                @if (addressForm.get('phoneNumber')?.touched && addressForm.get('phoneNumber')?.hasError('required'))
+                                {
+                                    <div class="invalid-errors">
+                                        Phone Number is required
+                                    </div>
+                                }
+                                @if (addressForm.get('phoneNumber')?.touched && addressForm.get('phoneNumber')?.hasError('pattern'))
+                                {
+                                    <div class="invalid-errors">
+                                        Invalid Phone Number
+                                    </div>
+                                }
+                            </div>
+                            <div class="col-12 mt-2">
+                                <label for="inputAddress" class="form-label mb-1">Address 1 <span class="requiredStar">*</span></label>
+                                <input type="text" class="form-control" formControlName="address1" id="inputAddress" placeholder="D.no 123, Floor, Building name">
+                                @if (addressForm.get('address1')?.touched && addressForm.get('address1')?.hasError('required'))
+                                {
+                                    <div class="invalid-errors">
+                                        Address is required.
+                                    </div>
+                                }
+                            </div>
+                            <div class="col-12 mt-2">
+                                <label for="inputAddress2" class="form-label mb-1">Address 2</label>
+                                <input type="text" formControlName="address2" class="form-control" id="inputAddress2" placeholder="Street, Area">
+                            </div>
+                            <div class="col-md-6  mt-2">
+                                <label for="inputCity" class="form-label mb-1">City <span class="requiredStar">*</span></label>
+                                <input type="text" formControlName="city" class="form-control" placeholder="Ex: Bangalore" id="inputCity">
+                                @if (addressForm.get('city')?.touched && addressForm.get('city')?.hasError('required'))
+                                {
+                                    <div class="invalid-errors">
+                                        City is required.
+                                    </div>
+                                }
+                            </div>
+                            <div class="col-md-4 mt-2">
+                                <label for="inputState" class="form-label mb-1 mb-1">State <span class="requiredStar">*</span></label>
+                                <input type="text" class="form-control" formControlName="state" placeholder="Ex: Karnataka" id="inputState">
+                                @if (addressForm.get('state')?.touched && addressForm.get('state')?.hasError('required'))
+                                {
+                                    <div class="invalid-errors">
+                                        State is required.
+                                    </div>
+                                }
+                            </div>
+                            <div class="col-md-2 mt-2">
+                                <label for="inputZip" class="form-label mb-1">Pincode <span class="requiredStar">*</span></label>
+                                <input type="text" class="form-control" formControlName="pincode" placeholder="Ex: 123456" id="inputZip">
+                                @if (addressForm.get('pincode')?.touched && addressForm.get('pincode')?.hasError('required'))
+                                {
+                                    <div class="invalid-errors">
+                                        Pincode is required.
+                                    </div>
+                                }
+                                @if (addressForm.get('pincode')?.touched && addressForm.get('pincode')?.hasError('pattern'))
+                                {
+                                    <div class="invalid-errors">
+                                        Invalid Pincode
+                                    </div>
+                                }
+                            </div>
+                            <div class="col-12 mt-2">
+                                <label for="Landmark" class="form-label mb-1">Landmark</label>
+                                <input type="text" class="form-control input-sm" formControlName="landMark" id="Landmark"
+                                    placeholder="Ex: Near High School">
+                            </div>
+                            <div class="col-12 mt-2">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" formControlName="isBilling">
+                                    <label class="form-check-label" for="inlineCheckbox1" >Billing address</label>
+                                  </div>
+                                  <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" formControlName="isDefault">
+                                    <label class="form-check-label" for="inlineCheckbox2" >Default address</label>
+                                  </div>
+                            </div>
+                        </div> 
+                          
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-light text-center" #addressModalCloseButton data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary text-center" (click)="onSubmit()"  type="submit">Save</button>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</form>

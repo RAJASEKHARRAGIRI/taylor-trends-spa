@@ -1,0 +1,109 @@
+<!-- Vertically centered modal -->
+<div class="modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+style="background-color: rgba(0,0,0,0.7);" aria-hidden="true" #exampleModal>
+
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content ">
+
+      <div class="modal-body px-0 py-0 " style="border: 1px solid #615f5f;border-radius: 5px;">
+        <button type="button" class="btn-close shadow-none" style="float: right;margin: 10px;font-size: 12px;"
+        (click)="closeModal()"  data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="row g-0">
+          <div class="col-md-7 d-none d-md-block">
+            <img src="https://www.bycomercial.com/wp-content/uploads/2020/07/posts-Byc-115.jpg" class="img-fluid rounded-start" alt="...">
+          </div>
+          
+          <div class="col-md-5">
+            <div class="row text-center mt-5 mb-1">
+              <h5 style="color: #ff5757;">Welcome!</h5>
+              <!-- <h5 style="color: #ff5757;">Welcome! Register to avail the best deals</h5> -->
+              <!-- <h6 class="mb-3" style="color: #6f6f6f;">Unlock Superior Discounts</h6> -->
+            </div>
+            <!-- <div class="row text-center">
+              <p style="font-size: 14px; color: rgba(37, 36, 36,0.6); font-weight: 500">Enter Mobile Number</p>
+            </div> -->
+            <div class="row justify-content-center">
+              <div class="col-12 mb-2">
+                <input type="text" class="form-control shadow-none" style="font-size: 14px;border: 1px solid darkgray; border-radius: 10px;"
+                id="modileNumber" placeholder="Mobile Number" [(ngModel)]="mobileNumber" (keyup)="onKeyUpEvent()"  autocomplete="off"> 
+              </div>
+              <div class="col-12 mb-1">
+                <input type="password" class="form-control shadow-none" style="font-size: 14px;border: 1px solid darkgray; border-radius: 10px;"
+                id="password" placeholder="Password" [(ngModel)]="password" (keyup)="onKeyUpEvent()"  autocomplete="off">
+              </div>
+           
+              <div class="col-12 mb-2">
+                <div class="form-check" style="margin-left: 10px;">
+                  <input class="form-check-input shadow-none" type="checkbox" id="gridCheck">
+                  <label class="form-check-label" style="font-size: 12px;  cursor: pointer;" for="gridCheck">
+                    Notify me for any updates & offers 
+                  </label>
+                </div>
+              </div>
+
+              <div class="d-grid gap-2 col-4 mx-auto mb-2">
+                <button type="button" class="btn btn-sm btn-secondary" (click)="login()"> Login</button>
+              </div> 
+
+             
+            </div>
+           <!-- <div class="col-12 px-0 py-0 text-center">
+            <p style="font-size: 13px; color: rgb(39, 39, 39, 0.5);">
+              <span style=" letter-spacing: -2px;">---------------------</span>
+               Or 
+              <span style=" letter-spacing: -2px;">---------------------</span></p>
+           </div> -->
+          
+           <!-- <div class="d-grid gap-2 col-8 mx-auto mb-3">
+            <button type="button" class="btn btn-md btn-secondary"><i class="fa-brands fa-whatsapp"></i> Whatsapp Login</button>
+          </div> -->
+
+          <div class="d-grid col-12 text-center">
+            <p style="font-size: 10.5px; color: rgba(0,0,0,0.7);" class="mb-1">I accept that I have read & understood Taylor Trend's <u>Privacy Policy and T&Cs</u>.</p>
+          </div>
+
+          <div class="col-12 mb-0 text-center">
+            <span class="__registerClass mx-3"><a href="#" style="color: rgb(37, 37, 37)">Sign Up <i class="fa-solid fa-arrow-right"></i></a></span>
+          </div>
+
+          <!--Discount Cards-->
+          <!-- <div class="row">
+            <div class="row row-cols-1 row-cols-md-3 gx-3 mx-2">
+              <div class="col">
+                <div class="card __discount_card">
+                  <div class="card-body">
+                    <h6 class="card-title __card_title">Zero Subscription Fees</h6>
+                    <p class="card-text __card_text">Access KwikPass without any subscription charges</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card __discount_card">
+                  <div class="card-body">
+                    <h6 class="card-title __card_title">Lowest price guaranteed</h6>
+                    <p class="card-text __card_text">Explore unbeatable prices and unmatchable values</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card __discount_card">
+                  <div class="card-body">
+                    <h6 class="card-title __card_title">100% secure & spam free</h6>
+                    <p class="card-text __card_text">Guaranteed data protection & spam-free inbox</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> -->
+
+         
+         
+          </div>
+          
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>

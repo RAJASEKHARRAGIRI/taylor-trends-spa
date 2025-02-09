@@ -1,0 +1,27 @@
+/* Scrollbar styling for Webkit-based browsers */
+.custom-scroll::-webkit-scrollbar {
+    height: 8px; /* Height of the horizontal scrollbar */
+    background-color: #e3e5fc; /* Background color of the scrollbar track */
+}
+
+/* Scrollbar thumb styling */
+.custom-scroll::-webkit-scrollbar-thumb {
+    background-color: #bcd8f7; /* Scrollbar thumb color */
+    border-radius: 4px; /* Rounded corners for the scrollbar thumb */
+}
+
+/* Scrollbar thumb hover effect */
+.custom-scroll::-webkit-scrollbar-thumb:hover {
+    background-color: #9393f1; /* Darker shade on hover */
+}
+
+/* Scrollbar corner styling (optional) */
+.custom-scroll::-webkit-scrollbar-corner {
+    background-color: #d3d3d3; /* Background color of scrollbar corner */
+}
+
+.carousel-caption
+{
+    color: white;
+    background: rgba(35, 47, 36, 0.3);
+}

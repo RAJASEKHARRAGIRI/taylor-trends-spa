@@ -1,0 +1,26 @@
+input[type=checkbox] {
+    transform: scale(0.9);
+    cursor: pointer;
+    background-color: rgb(192, 248, 248);
+}
+
+input[type=checkbox]:checked {
+    background-color: rgb(140, 155, 249);
+}
+
+.__card_title{
+    font-size: 11px;
+    color: red;
+}
+.__card_text{
+    font-size: 10px;
+    color: #373737;
+}
+.__discount_card{
+background: linear-gradient(0deg, rgb(147 241 45) 0%, rgb(255 255 255) 0%, rgb(225 225 225) 92%);
+box-shadow:2px 8px 8px #dcdcdc;
+    border-radius: 35px;
+}
+.__registerClass{
+    font-size: 12px;
+}

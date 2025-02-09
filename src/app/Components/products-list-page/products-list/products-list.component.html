@@ -1,0 +1,93 @@
+@if (!loading) {
+    @if(isFiltersApplicable) {
+        <div class="row my-4 align-items-center">
+            <!-- Left Section: Product Count -->
+            <div class="col-12 col-md-6 mt-2 text-center text-md-start">
+              <h6 class="m-0" style="font-size: 16px; color: grey;">Showing {{count}} Products</h6>
+            </div>
+            
+            <!-- Right Section: Sort Dropdown -->
+            <div class="col-8 col-md-6 mt-2 text-md-end">
+              <div class="btn-group">
+                <button 
+                  type="button" 
+                  class="btn btn-md dropdown-toggle" 
+                  data-bs-toggle="dropdown" 
+                  aria-expanded="false">
+                  Sort by: &nbsp;Popularity
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end">
+                  <li><a class="dropdown-item" href="#">Popularity</a></li>
+                  <li><a class="dropdown-item" href="#">What's new</a></li>
+                  <li><a class="dropdown-item" href="#">Price: Low to High</a></li>
+                  <li><a class="dropdown-item" href="#">Price: High to Low</a></li>
+                  <li><a class="dropdown-item" href="#">Customer Rating</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-4 mt-2 text-end d-block d-md-none d-sm-block">
+                <button class="btn btn-sm btn-light text-end" (click)="openOffcanvas()">Filters &nbsp; <i class="fa-solid fa-filter"></i></button>
+            </div>
+          </div>
+    }
+    <div class="row mb-5">
+        @for (item of productsList$ | async; track $index) {
+        @if(isFiltersApplicable || (productId != item.id && $index < 8)){
+        <div class="col-md-3 col-sm-6 mb-4">
+            <div class="product-grid">
+                <div class="product-image" (click)="viewProduct(item)">
+                    <a>
+                        <img class="pic-1" src={{item.images[0]}}>
+                        <img class="pic-2" src={{item.images[1]}}>
+                    </a>
+    
+                    <div class="img-overlay">
+                        <button class="btn btn-sm btn-light shadow-none"
+                            style="border-radius: 17px;background-color: #f5dbdb;color: #464444;"><i
+                                class="fa-solid fa-cart-plus"></i></button>
+                    </div>
+    
+                    <!-- <ul class="social">
+                        <li><a href="#" data-tip="Quick View"> <i class="fa fa-search"></i></a></li>
+                        <li><a href="" data-tip="Add to Wishlist"><i class="fa-solid fa-heart"></i></a></li>
+                        <li><a href="" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
+                    </ul> -->
+                    <!-- getRandomNumber() -->
+                    <span class="product-new-label" style="border-radius: 0px 0px 16px 0px;">{{$index % 2 ==
+                        0 ? 'New' : 'Sale'}}</span>
+                    <!-- <span class="product-discount-label">{{item.discount}}%</span> -->
+    
+                </div>
+    
+                <div class="product-content mb-3">
+                    <h6 class="text-truncate mx-3 title-name">{{item.name}}</h6>
+                    <h3 class="title text-truncate mx-3"><a href="#">{{item.description}}</a></h3>
+                    <div class="price">Rs. {{calculateAmount(item)}}&nbsp; <span>Rs. {{item.price}}</span>
+                        <span class="mx-3"
+                            style="color: darkred; font-size: 12px; text-decoration: none;">({{item.discount}}%
+                            Off)</span>
+                    </div>
+                    <!-- <a class="add-to-cart" href="#">+ Add To Cart</a> -->
+                </div>
+    
+                <ul class="mb-0">
+                    <li class="fa fa-star"></li>
+                    <li class="fa fa-star"></li>
+                    <li class="fa fa-star"></li>
+                    <li class="fa fa-star"></li>
+                    <li class="fa fa-star disable"></li>
+                </ul>
+            </div>
+        </div>
+        }
+        }
+    </div>
+    
+    
+    }
+
+ <off-canvas-side-bar></off-canvas-side-bar>
+    
+    @if (loading) {
+    <page-loader></page-loader>
+    }

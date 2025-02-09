@@ -1,0 +1,19 @@
+<div class="row">
+    <div class="col-12 d-grid mb-2">
+        <button class="btn btn-warning btn-sm float-end fontweight" (click)="proceedToNext()">Continue</button>
+    </div>
+</div>
+
+@if(currentState === "address") {
+<address-list [isViewCart]="true" (selectedAddress)="selectedAddress($event)"></address-list>
+} @else if(currentState === "payment") {
+<payment-gate-way (selectedPayment)="selectedPayment($event)"></payment-gate-way>
+} @else if(currentState === "summary") {
+    <order-summary [addressDetails]="proceedAddress" [cartAmountDetails]="cartAmountDetails" [paymentDetails]="proceedPayment"></order-summary>
+}
+
+<div class="row">
+    <div class="col-12 d-grid mb-2">
+        <button class="btn btn-warning btn-sm float-end fontweight" (click)="proceedToNext()">Continue</button>
+    </div>
+</div>

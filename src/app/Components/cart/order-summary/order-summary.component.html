@@ -1,0 +1,61 @@
+<div class="row" style="text-align: center;">
+    <h6>Order Summary</h6>
+</div>
+
+<div class="row">
+    <p class="mb-2">Delivery Address: </p>
+    <div class="col-12 mb-3">
+        <div class="card h-100 cardStyle">
+            <div class="card-body ">
+                <h6 class="card-title">{{addressDetails.fullName}}</h6>
+                <p class="card-text my-0">{{addressDetails.address1}}</p>
+                <p class="card-text my-0">{{addressDetails.address2}}</p>
+                <p class="card-text my-0">{{addressDetails.city}}, {{addressDetails.state}}, {{addressDetails.pincode}}
+                </p>
+                <p class="card-text my-0">{{addressDetails.landMark}}</p>
+                <p class="card-text my-0">{{addressDetails.phoneNumber}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <p class="mb-2">Payment Type: </p>
+    <div class="col-12 mb-3">
+        <div class="card h-100 cardStyle">
+            <div class="card-body ">
+                <h6 class="card-title">{{paymentDetails.name}}
+                    <i [ngClass]="[paymentDetails.icon]" class="float-end" style="font-size: xxx-large;"></i>
+                </h6>
+                <p class="card-text my-0">{{paymentDetails.description}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <p class="mb-2">Price Details: </p>
+    <div class="col-12 mb-3">
+        <div class="card h-100 cardStyle">
+            <div class="card-body ">
+                <p class="d-flex justify-content-between card-text">
+                    <span>Subtotal:</span>
+                    <span>{{cartAmountDetails.totalCartPrice | currency:'INR':'symbol-narrow':'3.0-2'}} /-</span>
+                </p>
+                <p class="d-flex justify-content-between card-text">
+                    <span>Tax (10%):</span>
+                    <span>{{cartAmountDetails.totalCartPercent | currency:'INR':'symbol-narrow':'3.0-2'}} /-</span>
+                </p>
+                <p class="d-flex justify-content-between card-text">
+                    <span>Shipping:</span>
+                    <span>{{0 | currency:'INR':'symbol-narrow':'3.0-2'}} /-</span>
+                </p>
+                <hr>
+                <h6 class="d-flex justify-content-between">
+                    <span>Total ({{cartAmountDetails.totalItems}} item):</span>
+                    <span>{{cartAmountDetails.totalPrice | currency:'INR':'symbol-narrow':'3.0-2'}} /-</span>
+                </h6>
+            </div>
+        </div>
+    </div>
+</div>

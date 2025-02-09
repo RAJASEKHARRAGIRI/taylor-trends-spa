@@ -1,0 +1,56 @@
+<div class="mx-3">
+    <br>
+    <div class="row mb-2">
+        <div class="col-sm-6">
+            <h5>Trending Now</h5>
+        </div>
+        <div class="col-sm-6">
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <button class="btn btn-default me-md-2" routerLink="/viewproducts" type="button">View All</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        @for (item of productsList$ | async; track $index) {
+        @if ($index < 4 ) {
+        <div class="col-sm-3">
+            <div class="card categories-img">
+
+                <!-- <span class="notify-badge blink_me">New</span> -->
+
+
+                <div class="img-wrapper"  (click)="viewProduct(item)">
+                    <img class="img-responsive card-img-top cart_img" style="height: 350px;" src={{item.images[0]}}
+                        >
+                    <div class="img-overlay">
+                        <button class="btn btn-sm btn-outline-info" (click)="AddToCart()"><i
+                                class="fa-solid fa-cart-plus"></i></button>
+                    </div>
+                </div>
+
+                <div class="card-body" style="margin-bottom: -20px;">
+                    <h6 class="card-title d-inline-block text-truncate mb-0" style="max-width: 260px;font-size: 15px;">
+                        {{item.name}}</h6>
+                    <p class="card-text d-inline-block text-truncate mb-0"
+                        style="max-width: 260px; color: #537777; font-size: 13px;">{{item.description}}</p>
+                    <p style="font-size: 15px;"><b>Rs. {{calculateAmount(item)}} <span class="mx-3"
+                                style="text-decoration: line-through; "> Rs. {{item.price}} </span><span class="mx-3"
+                                style="color: darkred; font-size: 12px;">{{item.discount}}% Off</span></b></p>
+                </div>
+            </div>
+        </div>
+        }
+    }
+    </div>
+</div>
+
+<div class="card bg-dark text-white mb-0">
+    <img src="https://thebearhouse.com/cdn/shop/files/Offer_Banner_1600X652_4_-min.png" class="" alt="">
+    <div class="card-img-overlay ">
+        <!-- <h5 class="card-title">Special Offer</h5> -->
+        <!-- <p class="card-text">Get amazing deals & offers on Shirts, T-Shirts, Pants, Shoes, Shorts, Jackets, Blazers, Caps,  etc.</p> -->
+        <p class="card-text">Special offer upto <span class="blink_me" style="font-weight: bold;font-size: 20px;">60%
+                Off</span> on Christmas sale !</p>
+    </div>
+</div>

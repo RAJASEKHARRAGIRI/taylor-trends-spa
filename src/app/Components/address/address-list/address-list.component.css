@@ -1,0 +1,24 @@
+.card-text, .form-check-label{
+    font-size: 14px;
+}
+
+._icons{
+    font-size: 12px;
+}
+
+.disabledInput {
+    opacity: 1 !important;
+ }
+
+ .cardStyle{
+    background-color: rgb(255, 255, 255);
+    cursor: pointer;
+ }
+
+ .selectedCardStyle{
+    background-color: rgb(228 210 255)
+ }
+
+ .cardStyle:hover{
+    background-color: rgb(228 210 255)
+ }

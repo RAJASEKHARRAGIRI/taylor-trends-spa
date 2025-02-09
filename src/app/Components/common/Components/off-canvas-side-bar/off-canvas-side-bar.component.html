@@ -1,0 +1,22 @@
+<div
+      class="offcanvas offcanvas-end"
+      tabindex="-1"
+      id="dynamicOffcanvas"
+      data-bs-scroll="true"
+      data-bs-backdrop="false"
+      aria-labelledby="offcanvasLabel"
+    >
+      <div class="offcanvas-header" style="border-bottom: 1px solid #e4e4e4;">
+        <h6 style="font-size: 18px;" class="offcanvas-title" id="offcanvasLabel">{{ title }}</h6>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="offcanvas-body" style="margin-top: 0px;">
+        <!-- <h6 class="mb-3" style="text-align: center;" >Payment for Rs. {{this.price}} /-</h6> -->
+        <ng-container #dynamicContent></ng-container>
+      </div>
+    </div>

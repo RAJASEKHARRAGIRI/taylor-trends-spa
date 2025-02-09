@@ -1,0 +1,156 @@
+@if (loading) {
+<page-loader></page-loader>
+}
+@if(!loading){
+<div class="container-fluid">
+  <div class="row my-5">
+    <div class="col-lg-5 col-md-6 col-sm-12 mb-4">
+      <div class="row">
+        <!-- Sidebar for Thumbnail Images -->
+        <div class="col-3 col-sm-3">
+          @for (item of productDetails.images; track $index) {
+          <div class="col-12 mb-2 text-center" (click)="displayImage(item)">
+            <img src={{item.url}} class="img-thumbnail thumbnail-image" [ngClass]="{ 'selected_image': item?.active }" alt="Thumbnail">
+          </div>
+          }
+        </div>
+        <!-- Displayed Image -->
+        <div class="col-9 col-sm-9">
+          <div class="col-12">
+            <img src={{selectedImage}} class="img-fluid displayed_image" alt="Displayed Image">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-7 col-md-6 col-sm-12">
+      <h4>{{productDetails.brand}}</h4>
+
+      <p style="font-weight: 400; font-size: 14px;">{{productDetails.name}}</p>
+      <p style="font-weight: 400; font-size: 17px; margin-top: -5px;"><span style="text-decoration:line-through;">Rs.
+          {{productDetails.price}}</span>
+        &nbsp; &nbsp;Rs. {{calculateAmount(productDetails.price, productDetails.discount) |
+        currency:'INR':'symbol-narrow':'3.0-2' }} &nbsp;
+        <span style=" color: rgb(243, 46, 46);">( {{productDetails.discount}} % Off)</span>
+      </p>
+      <p style="font-size: 13px; margin-top: -10px;">(Incl. of all taxes)</p>
+      <p style="font-size: 14px; color: gold;">
+        @for (rating of [1,2,3,4,5]; track $index) {
+        @if(rating <= productDetails.rating){ <i class="fa-solid fa-star"></i>
+          }
+          @if(rating > productDetails.rating) {
+          <i class="fa-regular fa-star"></i>
+          }
+          }
+
+          <span>&nbsp; &nbsp; &nbsp;</span> <span
+            style="color: rgb(112, 112, 231); cursor: pointer; text-decoration: underline;">{{productDetails.reviewsCount}}
+            Reviews</span>
+      </p>
+
+      <div class="card mb-3" style="width: 22rem; font-size: 13.5px;">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Use Code: <span style="font-weight: 500;">BUY2</span> On Buy 2 Items Get 10% OFF
+          </li>
+          <li class="list-group-item">Use Code: <span style="font-weight: 500;">BUY4</span> On Buy 4 Items Get 15% OFF
+          </li>
+          <li class="list-group-item">Use Code: <span style="font-weight: 500;">BUY6</span> On Buy 6 Items Get 20% OFF
+          </li>
+        </ul>
+      </div>
+      <!-- <p>
+                <button class="btn btn-danger shadow-none mt-3" style="font-size: 15px;" >
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> Earn 89 Points on this purchase 
+                </button>
+              </p> -->
+
+      <div>
+        <p style="margin-bottom: 5px;">Size</p>
+        @for (size of ['S','M','L','XL','XXL','3XL']; track $index) {
+        <input type="checkbox" class="btn-check btn-sm" id="{{'btn-check-2-outlined-' + size}}"
+          [attr.checked]="size === 'S' ? '' : null"
+          [checked]="checkedIndex === size" 
+          (change)="onCheckboxChange(size)" 
+          autocomplete="off">
+        <label class="btn btn-outline-secondary btn-sm" for="{{'btn-check-2-outlined-' + size}}">{{size}}</label>
+        &nbsp;
+        }
+      </div>
+      <div class="col-md-2 mt-3">
+        <label style="margin-bottom: 5px;">Quantity</label>
+        <div class="input-group mb-3">
+
+          <span class="input-group-text" style="cursor:pointer" (click)="DecreaseQuantity()">-</span>
+          <input type="text" class="form-control shadow-none form-control-sm" [(ngModel)]="quantity"
+            aria-label="Amount (to the nearest dollar)">
+          <span class="input-group-text" style="cursor:pointer" (click)="IncreaseQuantity()">+</span>
+        </div>
+      </div>
+
+      <div class="col-sm-11 d-grid">
+        <button style="border-radius: 1px; font-size: 15px;" (click)="AddToCart()" class="btn btn-primary btn-lg btn-dark" type="button">
+          {{isProductInCart ? 'Update the Cart' : 'Add to Cart'}}</button>
+      </div>
+
+      <div class="col-sm-11 my-3">
+        <div class="accordion accordion-flush" id="accordionFlushExample">
+          <div class="accordion-item shadow-none">
+            <h2 class="accordion-header" id="flush-headingOne">
+              <button class="accordion-button collapsed shadow-none" type="button" data-bs-toggle="collapse"
+                data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                DESCRIPTION
+              </button>
+            </h2>
+            <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
+              data-bs-parent="#accordionFlushExample">
+              <div class="accordion-body">
+
+                <ul>
+                  <li> Brand: {{productDetails.brand}} </li>
+                  <li> Details: {{productDetails.description}} </li>
+                  <li> Category: {{productDetails.category}} </li>
+                  <li> Tags: {{convertTags(productDetails.tags)}} </li>
+                  <li> Availability: {{productDetails.stockStatus}} </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingTwo">
+              <button class="accordion-button collapsed shadow-none" type="button" data-bs-toggle="collapse"
+                data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                SHIPPING INFORMATION
+              </button>
+            </h2>
+            <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo"
+              data-bs-parent="#accordionFlushExample">
+              <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the
+                <code>.accordion-flush</code> class. This is the second item's accordion body. Let's imagine this being
+                filled with some actual content.</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingThree">
+              <button class="accordion-button collapsed shadow-none" type="button" data-bs-toggle="collapse"
+                data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                MANUFACTURING & MAKERTED BY
+              </button>
+            </h2>
+            <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree"
+              data-bs-parent="#accordionFlushExample">
+              <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the
+                <code>.accordion-flush</code> class. This is the third item's accordion body. Nothing more exciting
+                happening here in terms of content, but just filling up the space to make it look, at least at first
+                glance, a bit more representative of how this would look in a real-world application.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <h5 class="mb-3">You may also like</h5>
+  <products-list [isFiltersApplicable]="false" (refreshPage)="RefreshPage($event)"></products-list>
+</div>
+}

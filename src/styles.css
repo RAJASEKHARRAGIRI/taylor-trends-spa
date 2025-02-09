@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+.toast-top-right{
+    top: 70px !important;
+}
+
+.body{
+    overflow-x: hidden !important;
+}
+
+
+.fontweight{
+    font-weight: 500 !important;
+ }

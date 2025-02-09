@@ -1,0 +1,11 @@
+.form-control, .form-label, .form-check-label{
+    font-size: 14px;
+}
+.invalid-errors{
+    font-size: 12px;
+    color: red;
+}
+
+.requiredStar{
+    color: red;
+}

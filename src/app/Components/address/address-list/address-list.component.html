@@ -1,0 +1,93 @@
+@if(!isViewCart) {
+<div class="container">
+  <div class="row mb-3">
+    <div class="col-12">
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+        @for (item of addressesList ; track $index) {
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body ">
+              <h6 class="card-title">{{item.fullName}}</h6>
+              <p class="card-text my-0">{{item.address1}}</p>
+              <p class="card-text my-0">{{item.address2}}</p>
+              <p class="card-text my-0">{{item.city}}, {{item.state}}, {{item.pincode}}</p>
+              <p class="card-text my-0">{{item.landMark}}</p>
+              <p class="card-text my-0">{{item.phoneNumber}}</p>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input disabledInput" type="checkbox" [checked]="item.isBilling"
+                  id="inlineCheckbox2" value="option2" disabled>
+                <label class="form-check-label disabledInput" for="inlineCheckbox2">Billing address</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input disabledInput " type="checkbox" [checked]="item.isDefault"
+                  id="inlineCheckbox3" value="option3" disabled>
+                <label class="form-check-label disabledInput" for="inlineCheckbox3">Default address</label>
+              </div>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">Updated on: {{item.createdAt | date: 'dd/MM/yyyy'}}</small>
+              <button class="btn btn-sm btn-secondary mx-2 float-end _icons" (click)="editAddress(item)"><i
+                  class="fa-regular fa-pen-to-square"></i></button>
+              <button class="btn btn-sm btn-danger float-end _icons" (click)="deleteAddress(item)"><i
+                  class="fa-solid fa-trash"></i></button>
+            </div>
+          </div>
+        </div>
+        }
+
+      </div>
+    </div>
+  </div>
+</div>
+}
+
+@if(isViewCart)
+{
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h6 class="mb-2">Select Address</h6>
+    </div>
+  </div>
+ 
+  <div class="row">
+    @for (item of addressesList ; track $index) {
+    <div class="col-12 mb-3">
+      <div class="card h-100 cardStyle" [ngClass]="{ 'selectedCardStyle': item?.selected }" (click)="selectAddress(item)">
+        <div class="card-body ">
+          <h6 class="card-title">{{item.fullName}}
+            @if(item?.selected) {
+              <i class="fa-solid fa-circle-check float-end" style="font-size:20px;color: #0036ff;"></i>
+            }
+           
+          </h6>
+          <p class="card-text my-0">{{item.address1}}</p>
+          <p class="card-text my-0">{{item.address2}}</p>
+          <p class="card-text my-0">{{item.city}}, {{item.state}}, {{item.pincode}}</p>
+          <p class="card-text my-0">{{item.landMark}}</p>
+          <p class="card-text my-0">{{item.phoneNumber}}</p>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input disabledInput" type="checkbox" [checked]="item.isBilling"
+              id="inlineCheckbox2" value="option2" disabled>
+            <label class="form-check-label disabledInput" for="inlineCheckbox2">Billing address</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input disabledInput " type="checkbox" [checked]="item.isDefault"
+              id="inlineCheckbox3" value="option3" disabled>
+            <label class="form-check-label disabledInput" for="inlineCheckbox3">Default address</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    }
+
+  </div>
+
+ 
+</div>
+}
+
+
+@if (loading) {
+<page-loader></page-loader>
+}
