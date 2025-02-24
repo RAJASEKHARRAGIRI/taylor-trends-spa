@@ -29,6 +29,10 @@ export class OffCanvasSideBarComponent implements OnDestroy {
     }
   }
 
+  onClose(): void {
+    location.reload();
+  }
+
   ngOnDestroy(): void {
     if (this.componentRef) {
       this.componentRef.destroy();

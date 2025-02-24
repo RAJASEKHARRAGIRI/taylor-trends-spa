@@ -69,6 +69,7 @@
 
  ._profile_dd{
     top: 2rem;
+    padding: 0px;
     /* left: -3.2rem; */
 }
 
@@ -82,4 +83,8 @@
     border: 0px;
     z-index: 1;
 }
+
+/* ._profile_dd li {
+    padding-right: 15px !important;
+} */
 

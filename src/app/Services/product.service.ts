@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { PostApiResponse } from '../Models/ApiResponse';
 import { AddToCart } from '../Models/AddToCart';
 import { CartDetails } from '../Models/CartDetails';
+import { ProductFilterRequest } from '../Models/ProductFilterRequest';
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +16,15 @@ export class ProductService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getProducts(): Observable<any[]> {
-    return this.httpClient.get<any[]>(this.baseUrl);
+  private filtersChanged = new BehaviorSubject<ProductFilterRequest>({} as ProductFilterRequest);
+  castChangedFilter = this.filtersChanged.asObservable();
+
+  isFiltersChanged(filters: ProductFilterRequest) {
+    this.filtersChanged.next(filters);
+  }
+
+  getProducts(payload: ProductFilterRequest): Observable<any[]> {
+    return this.httpClient.post<any[]>(this.baseUrl, payload);
   }
 
   getCategories(): Observable<any[]> {

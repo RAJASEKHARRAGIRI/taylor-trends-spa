@@ -25,7 +25,7 @@ export const httpCustomInterceptor: HttpInterceptorFn = (req: HttpRequest<any>, 
           console.log('Unauthorised');
           localStorage.removeItem("bearerToken");
           localStorage.removeItem("fullName");
-          alert("Unauthorised, Please login again");
+          console.log("Unauthorised, Please login again");
           // toastrService.error('Unauthorised, Please login again');
         }
         console.error('Error intercepted:', error);

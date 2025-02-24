@@ -18,8 +18,9 @@
                     [attr.aria-labelledby]="'panelsStayOpen-headingOne'+item.id">
                     <div class="accordion-body">
                         @for (filter of item.filters; track $index) {
-                        <div class="form-check" >
-                            <input class="form-check-input shadow-none" style="cursor: pointer;"  type="checkbox" value="" id="{{ 'flexCheckDefault' + item.name + '_' + filter.name}}">
+                        <div class="form-check" (click)="filterProducts(filter, item)">
+                            <input class="form-check-input shadow-none" style="cursor: pointer;"  type="checkbox" value="" [checked]="filter.selected" 
+                            id="{{ 'flexCheckDefault' + item.name + '_' + filter.name}}" (change)="onFilterChange(filter, item)">
                             <label class="form-check-label w-100" style="cursor: pointer;" for="{{ 'flexCheckDefault' + item.name + '_' + filter.name}}">
                                 {{filter.name}} &nbsp;&nbsp;<span class="text-end" style="color: rgb(95, 94, 94);">({{filter.count}})</span>
                             </label>

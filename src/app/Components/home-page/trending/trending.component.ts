@@ -3,6 +3,7 @@ import { AsyncPipe } from '@angular/common';
 import { Observable } from 'rxjs';
 import { ProductService } from '../../../Services/product.service';
 import { Router, RouterLink } from '@angular/router';
+import { ProductFilterRequest } from '../../../Models/ProductFilterRequest';
 
 @Component({
   standalone: true,
@@ -32,6 +33,11 @@ export class TrendingComponent  implements OnInit {
     return Math.ceil(item.price - ((item.discount / 100) * item.price));
   }
   private GetProducts(): void {
-   this.productsList$ = this.productService.getProducts();
+    let payload: ProductFilterRequest = {
+          price: 0,
+          discount: 0,
+          category: ''
+        };
+   this.productsList$ = this.productService.getProducts(payload);
   }
 }

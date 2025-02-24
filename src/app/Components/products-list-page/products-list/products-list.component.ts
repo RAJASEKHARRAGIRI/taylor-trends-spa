@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Inject, inject, Input, OnInit, Output, PLATFORM_ID, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Inject, inject, Input, OnChanges, OnInit, Output, PLATFORM_ID, SimpleChanges, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AsyncPipe, isPlatformBrowser, NgComponentOutlet } from '@angular/common';
 import { ProductService } from '../../../Services/product.service';
@@ -7,6 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { OffCanvasSideBarComponent } from '../../common/Components/off-canvas-side-bar/off-canvas-side-bar.component';
 import { OffCanvasService } from '../../common/Services/off-canvas.service';
 import { FiltersComponent } from '../filters/filters.component';
+import { ProductFilterRequest } from '../../../Models/ProductFilterRequest';
 
 @Component({
   standalone: true,
@@ -15,7 +16,7 @@ import { FiltersComponent } from '../filters/filters.component';
   templateUrl: './products-list.component.html',
   styleUrl: './products-list.component.css'
 })
-export class ProductsListComponent implements OnInit {
+export class ProductsListComponent implements OnInit  {
   public productsList$: Observable<any[]> = new Observable<any[]>;
   public count: number =0;
   public loading: boolean = false;
@@ -31,14 +32,16 @@ export class ProductsListComponent implements OnInit {
   router = inject(Router);  
   canvasService = inject(OffCanvasService);  
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+  constructor(@Inject(PLATFORM_ID) private platformId: Object, private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this.productId = this.route.snapshot.params['id'];
     this.GetProducts();
-  }  
 
- 
+    this.productService.castChangedFilter.subscribe( (filters: ProductFilterRequest) => {
+      this.GetProducts(filters);
+    });
+  }  
 
   public calculateAmount(item: any): number {
     return Math.ceil(item.price - ((item.discount / 100) * item.price));
@@ -65,9 +68,18 @@ export class ProductsListComponent implements OnInit {
   }
   }
 
-  private GetProducts(): void {
+  private GetProducts(requestPayload:ProductFilterRequest = {
+    price: 0,
+    discount: 0,
+    category: ''
+  }): void {
     this.loading = true;
-    this.productsList$ = this.productService.getProducts();
+    let payload: ProductFilterRequest = {
+      price: requestPayload.price ?? 0,
+      discount: requestPayload.discount ?? 0,
+      category: requestPayload.category ?? ''
+    };
+    this.productsList$ = this.productService.getProducts(payload);
     this.productsList$.subscribe(p => {
       this.count = p.length;
       this.loading = false;
