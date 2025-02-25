@@ -17,6 +17,15 @@ Taylor Trends SPA is a modern Single Page Application (SPA) built with Angular. 
 * Language: Typescript
 * Build Tool: Angular CLI
 
+## To run this application on a Windows machine, install the following:
+* Node.js (LTS version) – Download and install.
+* Angular CLI – Install via npm: npm install -g @angular/cli
+* Git (Optional) – Download for version control.
+* VS Code (Recommended IDE) – Download and install.
+* Install Project Dependencies: npm install
+* Running an Angular 18 Project: ng serve
+* Launch the application by using URL in browser: http://localhost:4200
+
 ## License
 This project is proprietary software and is licensed under the Taylor Trends company. Unauthorized copying, modification, distribution, or use of this project without explicit permission from Taylor Trends is strictly prohibited.
 
