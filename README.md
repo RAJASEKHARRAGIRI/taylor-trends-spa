@@ -18,7 +18,9 @@ Taylor Trends SPA is a modern Single Page Application (SPA) built with Angular. 
 * Build Tool: Angular CLI
 
 ## License
-This project is licensed under the MIT License. See the LICENSE file for details.
+This project is proprietary software and is licensed under the Taylor Trends company. Unauthorized copying, modification, distribution, or use of this project without explicit permission from Taylor Trends is strictly prohibited.
+
+For more details, please refer to the LICENSE file.
 
 ## Contact
 For any inquiries or suggestions, please reach out to 
