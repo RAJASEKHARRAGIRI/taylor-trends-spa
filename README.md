@@ -22,5 +22,5 @@ This project is licensed under the MIT License. See the LICENSE file for details
 
 ## Contact
 For any inquiries or suggestions, please reach out to 
-*Github: https://github.com/RAJASEKHARRAGIRI
-*LinkedIn: https://www.linkedin.com/in/rajasekhar-ragiri/
+* Github: https://github.com/RAJASEKHARRAGIRI
+* LinkedIn: https://www.linkedin.com/in/rajasekhar-ragiri/
