@@ -2,6 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
 import { Observable } from 'rxjs';
 import { ProductService } from '../../../Services/product.service';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   standalone: true,
@@ -13,6 +14,8 @@ import { ProductService } from '../../../Services/product.service';
 export class CategoriesComponent implements OnInit {
 
   public categoriesList$: Observable<any[]> = new Observable<any[]>;
+   router = inject(Router);  
+   
   ngOnInit(): void {
     this.GetCategories();
   }
@@ -21,6 +24,10 @@ export class CategoriesComponent implements OnInit {
 
   public AddToCart(): void {
     alert("Product added to cart 1");
+  }
+
+  public viewProduct(product: any): void {
+    this.router.navigate(['viewproducts']);
   }
 
   private GetCategories(): void {
